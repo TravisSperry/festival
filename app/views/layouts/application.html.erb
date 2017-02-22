@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Festival</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://js.stripe.com/v1/', 'application', 'data-turbolinks-track': 'reload' %>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+
+  </head>
+
+  <body>
+    <%= render 'layouts/navbar' %>
+    <%= flash_messages %>
+
+    <%= yield %>
+
+    <% if Rails.env.development? %>
+      <div class="container">
+        <div class="debug card" style="margin:30px 0 30px 0;">
+          <div class="card-block"><%= debug(params) %></div>
+        </div>
+      </div>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded mb-5">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <%= image_tag "jrmf_logo.png", size: '30x30', class: 'd-inline-block align-top', atl: 'Julia Robinson Math Festival Logo' %>
+      JRMF - Columbus
+    </a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarToggle">
+      <ul class="navbar-nav">
+        <% if current_admin %>
+          <li class="nav-item">
+            <%= link_to "Registrations", registrations_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle-o"></i> Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "Edit Profile", edit_admin_registration_path, class: "dropdown-item" %>
+              <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.mathplusacademy.com" target="_blank">Visit MathPlusAcademy.com</a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

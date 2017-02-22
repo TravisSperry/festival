@@ -1,0 +1,77 @@
+<%= form_for(registration) do |f| %>
+  <% if registration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+
+      <ul>
+      <% registration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :year %>
+    <%= f.number_field :year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :student_count %>
+    <%= f.number_field :student_count %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fee_waiver %>
+    <%= f.check_box :fee_waiver %>
+  </div>
+
+  <div class="field">
+    <%= f.label :consent %>
+    <%= f.check_box :consent %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stripe_card_token %>
+    <%= f.text_field :stripe_card_token %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stripe_charge_token %>
+    <%= f.text_field :stripe_charge_token %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirmation_code %>
+    <%= f.text_field :confirmation_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :total %>
+    <%= f.number_field :total %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

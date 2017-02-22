@@ -1,0 +1,171 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Julia Robinson Mathematics Festival - Columbus</h1>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <p>
+        Welcome to the registration page for the Columbus, Ohio, Julia Robinson Mathematics Festival hosted by Math Plus Academy!
+      </p>
+      <p>
+        The Julia Robinson Mathematics Festival was first held in Columbus in 2014. The festival has grow each year and has since been host to almost 1,000 students!
+      </p>
+      <p>
+        <strong>Grades:</strong> 4th - 8th
+      </p>
+      <p>
+        <strong>Location:</strong>
+        PAST Innovation Lab – 1003 Kinnear Rd, Columbus, OH 43212
+      </p>
+      <p>
+        <strong>How it works:</strong><br>
+        During the festival, students can join any table and work collaboratively with the volunteers and students there. Students are welcome to try out several tables until they find one that particularly interests them; once they do, they are encouraged to spend 30 – 45 minutes or more at that activity. Almost no activities will be possible to finish completely during the festival. Students will be able to take home activities that they have spent time on. There will also be a mathematical games area. We provide the mathematics and mathematicians to work with the students on the activities. Please bring an adult to provide supervision of your children/students. Admission for kids is $10; supervising adults are free. If you can't afford the fee, there is a checkbox at the bottom of the form to waive it.
+      </p>
+
+
+    </div>
+    <div class="col-md-6">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe src="https://www.youtube.com/embed/R8hGLgUGn_o?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="text-center mt-4">
+        <h3 class="display-5">Register Below!</h3>
+      </div>
+      <div class="jrmf_pic mt-4 mb-4">
+        <img src="<%= image_url('jrmf_pic.jpg') %>" class="img-fluid" alt="Responsive image">
+      </div>
+    </div>
+  </div>
+</div><!-- /.container -->
+<hr>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-12">
+      <h3>Register to Attend</h3>
+    </div>
+  </div>
+
+  <%= simple_nested_form_for @registration, wrapper: false do |f| %>
+    <% if @registration.errors.any? %>
+      <div class="card card-inverse card-danger mb-4">
+        <div class="card-block">
+          <h5 class="card-title">The form contains <%= pluralize(@registration.errors.count, "error") %>.</h5>
+          <ul style="margin-bottom:0;">
+          <% @registration.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.input :first_name, label: "Parent First Name" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :last_name, label: "Parent Last Name" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :phone, label: "Phone" %>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <%= f.input :email, label: "Email for confirmation to be sent to...", input_html: { "required pattern": "^\S+@(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$"} %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :school_name, label: "School Name or Home School" %>
+      </div>
+    </div>
+    <div class="reg_table mb-5">
+      <h3>Students</h3>
+      <table class="reg_form display" id="students" style="width:100%;border-spacing:5px;">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Grade Level</th>
+          <th></th>
+        </tr>
+        <%= f.fields_for :students, wrapper: false do |student_form| %>
+          <tr class="add_student fields">
+            <td class="student_first_name"><%= student_form.hidden_field :id %><%= student_form.input :first_name, label: false, input_html: {style: "width:99%;"} %></td>
+            <td class="student_last_name"><%= student_form.input :last_name, label: false, input_html: {style: "width:99%;"} %></td>
+            <td class="student_grade"><%= student_form.input :grade, collection: Student::GRADES, label: false %></td>
+            <td class="student_remove" valign="middle">
+              <%= student_form.link_to_remove do %>
+                <i class="fa fa-times fa-2x close" style="margin-bottom:17px;color:#d93039;" data-toggle="tooltip" data-placement="top" title="Remove Student"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <p><%= f.link_to_add :students, :data => { :target => "#students" }, class: "btn btn-xs btn-warning", id: "add_student" do %>
+        <%= icon('plus') %> Add Student
+      <% end %></p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card card-inverse card-success">
+          <div class="card-block">
+            <h4 class="card-title">Payment</h4>
+            <p class="card-text">The registration fee for this event is $10 PER STUDENT.</p>
+            <p class="card-text">If you are financially unable to pay the registration fee, you may request to have your registration fee waived. Your registration will still be accepted and the students can still attend the event.</p>
+            <%= f.input :fee_waiver, label: false, inline_label: "Check this box to request a registration fee waiver.", wrapper_html: {style: "margin:0;"} %>
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="card-block">
+            <p class="card-text">
+              Please alert us to any mobility issues, or
+              other special needs we should be aware of.
+              Also, feel free to include any comments: <br>
+              <div class="row">
+                <div class="col-md-12">
+                <%= f.input :comments, label: false, input_html: { rows: 4 }, wrapper_html: { style: "margin:0;"} %>
+                </div>
+              </div>
+            </p>
+          </div>
+        </div>
+
+        <p>
+          <%= f.input :consent, label: false, inline_label: "Children under 18 require consent from parent or guardian to fill out this form. Check this box if you have their consent.", input_html: {style: "margin:0;"} %>
+        </p>
+
+        <%= f.input :student_count, as: :hidden %>
+        <%= f.input :stripe_card_token, as: :hidden %>
+        <%= f.input :total, as: :hidden %>
+        <%= f.input :year, as: :hidden, input_html: { value: Registration::YEAR } %>
+      </div>
+      <div class="col-lg-4">
+          <%= render 'registrations/credit_card_info' %>
+        </br>
+        </br>
+            <%= f.submit "Submit Registration", class: "btn-lg btn-success float-sm-right", id: "submit_registration" %>
+      </div>
+    </div>
+  <% end %>
+</div><!-- /.container -->
+<hr class="mt-5 mt-sm-5 mb-4">
+<div class="container">
+  <div class="sponsors">
+    <h1 class="mb-5" style="text-align:center;">Sponsors</h1>
+    <div class="row">
+      <div style="text-align:center;margin-bottom:40px;" class="col-lg-6">
+        <%= link_to("http://www.mathplusacademy.com/") do %>
+          <%= image_tag("Math_Plus-Logo.png", width: "300")%>
+        <% end %>
+      </div>
+      <div style="text-align:center;margin-bottom:40px;" class="col-lg-6">
+        <%= link_to("https://pastinnovationlab.org/") do %>
+          <%= image_tag("past_IL_logo.png", width: "300")%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div><!-- /.container -->

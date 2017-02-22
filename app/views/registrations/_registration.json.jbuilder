@@ -1,0 +1,2 @@
+json.extract! registration, :id, :year, :student_count, :fee_waiver, :consent, :stripe_card_token, :stripe_charge_token, :email, :confirmation_code, :total, :first_name, :last_name, :email, :created_at, :updated_at
+json.url registration_url(registration, format: :json)
