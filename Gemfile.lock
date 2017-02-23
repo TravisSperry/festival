@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/cavi21/letter_opener.git
+  revision: 3be81cb10e4c71f79278db22aa5e10aca64418f0
+  specs:
+    letter_opener (1.0.0)
+      launchy (>= 2.2.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -39,6 +46,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     autoprefixer-rails (6.7.4)
       execjs
@@ -86,6 +95,8 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -111,6 +122,7 @@ GEM
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     pg (0.19.0)
+    public_suffix (2.0.5)
     puma (3.7.1)
     rack (2.0.1)
     rack-contrib (1.2.0)
@@ -205,6 +217,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-datatables-rails (~> 3.4.0)
   jquery-rails
+  letter_opener!
   listen (~> 3.0.5)
   meta_request
   nested_form
