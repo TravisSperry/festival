@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/cavi21/letter_opener.git
-  revision: 3be81cb10e4c71f79278db22aa5e10aca64418f0
-  specs:
-    letter_opener (1.0.0)
-      launchy (>= 2.2.0)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -49,7 +42,7 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
-    autoprefixer-rails (6.7.4)
+    autoprefixer-rails (6.7.5)
       execjs
     bcrypt (3.1.11)
     bootstrap (4.0.0.alpha6)
@@ -82,8 +75,8 @@ GEM
       sass (>= 3.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    i18n (0.8.0)
-    jbuilder (2.6.1)
+    i18n (0.8.1)
+    jbuilder (2.6.2)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-datatables-rails (3.4.0)
@@ -97,6 +90,8 @@ GEM
       thor (>= 0.14, < 2.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -182,10 +177,10 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
-    stripe (2.0.0)
+    stripe (2.0.1)
       faraday (~> 0)
     thor (0.19.4)
-    thread_safe (0.3.5)
+    thread_safe (0.3.6)
     tilt (2.0.6)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
@@ -194,7 +189,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
-    warden (1.2.6)
+    warden (1.2.7)
       rack (>= 1.0)
     web-console (3.4.0)
       actionview (>= 5.0)
@@ -217,7 +212,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-datatables-rails (~> 3.4.0)
   jquery-rails
-  letter_opener!
+  letter_opener
   listen (~> 3.0.5)
   meta_request
   nested_form

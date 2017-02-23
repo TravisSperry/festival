@@ -37,6 +37,8 @@ Rails.application.configure do
   # Set email to deliver via Letter Opener
   config.action_mailer.delivery_method = :letter_opener
 
+  config.action_mailer.asset_host = 'http://localhost:3000'
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
