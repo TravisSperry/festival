@@ -1,6 +1,6 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded mb-5">
   <div class="container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="/">
@@ -24,7 +24,9 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <a class="nav-link" href="https://www.mathplusacademy.com" target="_blank">Visit MathPlusAcademy.com</a>
+            <a class="nav-link" href="https://www.mathplusacademy.com" target="_blank">
+            <%= image_tag "mp_logo.png", width: '30', style: 'margin-bottom:4px;'%>  Visit MathPlusAcademy.com
+            </a>
           </li>
         <% end %>
       </ul>
