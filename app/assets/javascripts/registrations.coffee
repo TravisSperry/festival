@@ -24,7 +24,7 @@ jQuery ->
 
 
   # Update student count and total when text is enetered in fields
-  $("#students").on "change", ->
+  $("#students").on "keydown", ->
     student_count.update()
 
   #Update student count and total when field is removed

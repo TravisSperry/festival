@@ -35,7 +35,7 @@ class RegistrationsController < ApplicationController
         if @registration.save_without_payment
 
           # result = PonyExpress.event_registration_confirmation(@registration).deliver
-          format.html { redirect_to root_url, notice: 'Registration was successfully created. Your fee has been waived. Print this page for your records' }
+          format.html { redirect_to root_url, notice: 'Your registration was successfully created. Your fee has been waived. Print this page for your records' }
         else
           format.html { render action: "new" }
         end
@@ -43,7 +43,7 @@ class RegistrationsController < ApplicationController
         # Process registration with payment
         if @registration.save_with_payment
           # result = PonyExpress.event_registration_confirmation(@registration).deliver
-          format.html { redirect_to root_url(id: @registration.id, charge_id: @registration.stripe_charge_token), notice: "Registration was successfully created. A confirmation was sent to #{@registration.email}." }
+          format.html { redirect_to root_url(id: @registration.id, charge_id: @registration.stripe_charge_token), notice: "Your registration was successfully created. A confirmation was sent to #{@registration.email}." }
         else
           format.html { render action: "new" }
         end
