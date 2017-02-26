@@ -24,7 +24,7 @@
           <td><%= registration.student_count %></td>
           <td><%= registration.email %></td>
           <td><%= "$#{'%.2f' % (registration.total/100)}" %></td>
-          <td><%= link_to 'Show', festival_registration %></td>
+          <td><%= link_to 'Show', registration %></td>
           <td><%= link_to 'Edit', edit_festival_registration_path(registration) %></td>
         </tr>
       <% end %>
@@ -33,5 +33,5 @@
 
   <br>
 
-  <%= link_to 'New Registration', new_registration_path, class: 'btn btn-secondary btn-lg success' %>
+  <%= link_to 'New Registration', new_festival_registration_path, class: 'btn btn-secondary btn-lg success' %>
   </div>
