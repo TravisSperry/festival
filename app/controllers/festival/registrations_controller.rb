@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class Festival::RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, except: [:new, :create]
 

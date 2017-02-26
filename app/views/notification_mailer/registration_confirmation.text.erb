@@ -1,0 +1,30 @@
+Your registration is complete.
+
+https://www.mathplusacademy.com
+
+Thanks for your order!
+
+We have received your registration for the <%= Registration::YEAR %> Julia Robinson Mathematics Festival.
+
+Please review the items below.
+
+<%= pluralize @registration.student_count, 'Student' %> Registered
+
+$<%= @registration.fee_waiver ? '0.00' : '%.2f' % (@registration.total/100) %>
+
+<%= @registration.fee_waiver ? "(fee waiver requested)" : "" %>
+
+Total: $<%= @registration.fee_waiver ? '0.00' : '%.2f' % (@registration.total/100) %>
+
+This year's festival will be held at the PAST Innovation Lab (directions (https://goo.gl/maps/BAGp3ES9AT62) ). There will be food available for purchase the day of the event.
+Additional parking will be available across the street at The Metro School. There is limited parking next to PAST so plan to park at The Metro School. Please obey parking signage and do not park in the lots behind PAST.
+
+Interested in summer STEM opportunities?
+
+Check out our amazing selection of summer camps. Our STEM camps will be hosted at 4 convenient locations: Hilliard, Powell, New Albany and PAST Innovation Lab.
+
+View Summer Schedules (https://summercamps.mathplusacademy.com)
+
+
+Math Plus Academy
+9681 Sawmill Road, Powell, OH 43065

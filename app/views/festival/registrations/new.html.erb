@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <%= simple_nested_form_for @registration, wrapper: false do |f| %>
+  <%= simple_nested_form_for [:festival, @registration], wrapper: false do |f| %>
 
     <div class="row">
       <div class="col-md-4">
@@ -152,7 +152,7 @@
         <%= f.input :year, as: :hidden, input_html: { value: Registration::YEAR } %>
       </div>
       <div class="col-lg-4">
-          <%= render 'registrations/credit_card_info' %>
+          <%= render 'festival/registrations/credit_card_info' %>
         </br>
         </br>
             <%= f.submit "Submit Registration", class: "btn-lg btn-success float-sm-right", id: "submit_registration" %>
