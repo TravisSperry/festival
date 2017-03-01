@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222205415) do
+ActiveRecord::Schema.define(version: 20170301181454) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -53,8 +53,10 @@ ActiveRecord::Schema.define(version: 20170222205415) do
     t.string   "last_name"
     t.string   "grade"
     t.integer  "registration_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "shirt",           default: false
+    t.integer  "size"
   end
 
 end

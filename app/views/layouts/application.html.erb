@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Festival</title>
+    <title><%= Registration::YEAR %> JRMF <%= yield(:title) || "- Columbus, Ohio" %> </title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,8 +9,6 @@
     <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= render 'layouts/facebook_meta_tags' %>
-
-
   </head>
 
   <body>
