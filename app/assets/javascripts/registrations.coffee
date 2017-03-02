@@ -38,7 +38,6 @@ jQuery ->
 
   # Warn user if tuition waiver is selected with tshirt purchase
   $('#registration_fee_waiver').on 'change', ->
-    alert student.shirt_count()
     if student.shirt_count() > 0
       alert 'You have elected to have the tuition waved for this registration, but have asked to purchase a shirt(s). If you continue with this registration and tuition is waived we will not be able to provide the requested t-shirt(s).'
 
