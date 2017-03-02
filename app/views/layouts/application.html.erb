@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= Registration::YEAR %> JRMF <%= yield(:title) || "- Columbus, Ohio" %> </title>
+    <title><%= Registration::YEAR %> JRMF <%= content_for?(:title) ? "| #{yield(:title)}" : "- Columbus, Ohio" %> </title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>

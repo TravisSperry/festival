@@ -26,4 +26,8 @@ class Registration < ApplicationRecord
       save!
     end
   end
+
+  def tshirt_count
+    students.any? ? students.where(shirt: true).count : 0
+  end
 end

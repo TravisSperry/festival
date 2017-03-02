@@ -10,7 +10,6 @@ jQuery ->
   # Validate email address
   emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   $('#registration_email').on 'keydown', ->
-    console.log $(this).val()
     if $(this).val() == ''
       $(this).parent().removeClass('has-success').addClass('has-danger')
     else if emailReg.test($(this).val())
@@ -33,9 +32,15 @@ jQuery ->
   # Count shirts selected if page is reloaded
   student.shirt_selected($('.fields'))
 
-  #Set listener for created field
+  # Set listener for created field
   $(document).on 'nested:fieldAdded', (event) ->
     student.shirt_selected(event.field)
+
+  # Warn user if tuition waiver is selected with tshirt purchase
+  $('#registration_fee_waiver').on 'change', ->
+    alert student.shirt_count()
+    if student.shirt_count() > 0
+      alert 'You have elected to have the tuition waved for this registration, but have asked to purchase a shirt(s). If you continue with this registration and tuition is waived we will not be able to provide the requested t-shirt(s).'
 
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   registration_payment.setupForm()
@@ -67,8 +72,6 @@ registration =
     student_count = student.count()
     shirt_count = student.shirt_count()
 
-    console.log "Shirt count: #{shirt_count}; Student count: #{student_count}"
-
     $("#registration_student_count").val(student_count)
     $('#total > p').children('span').text("$#{(student_count * 10) + (shirt_count * 15)}.00")
     registration_payment.amountUpdate()
@@ -77,7 +80,7 @@ registration_payment =
   setupForm: ->
     $('#new_registration').submit ->
       registration.update_total()
-      if student_count.value() == 0
+      if student.count() == 0
         $('#stripe_error').text('Please add students to this registration.')
         false
       else

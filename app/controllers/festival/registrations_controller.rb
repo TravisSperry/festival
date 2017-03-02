@@ -51,10 +51,10 @@ class Festival::RegistrationsController < ApplicationController
 
 
     rescue Stripe::CardError => e
-      redirect_to new_registration_path , alert: e.message + " Please complete your registration with a valid credit card."
+      redirect_to new_festival_registration_path , alert: e.message + " Please complete your registration with a valid credit card."
 
     rescue Stripe::InvalidRequestError => e
-      redirect_to new_registration_path , alert: e.message + " Please complete your registration with a valid credit card."
+      redirect_to new_festival_registration_path , alert: e.message + " Please complete your registration with a valid credit card."
   end
 
   # PATCH/PUT /registrations/1

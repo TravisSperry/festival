@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <div class="card card-inverse card-danger mb-4">
+        <div class="card card-inverse card-danger mb-4 mt-4">
           <div class="card-block">
             <h5 class="card-title">Your registration contains <%= pluralize(@registration.errors.count, "error") %>.</h5>
             <ul style="margin-bottom:0;">
@@ -99,6 +99,7 @@
     </div>
     <div class="reg_table mb-5">
       <h3>Students</h3>
+      <%= link_to "T-Shirt Sample", "#", class: 'btn btn-secondary mb-3', data: { toggle: "modal", target: "#tshirtModal"} %>
       <div class="reg_form display" id="students" style="width:100%;">
         <%= f.fields_for :students, wrapper: false %>
 
@@ -172,3 +173,24 @@
     </div>
   </div>
 </div><!-- /.container -->
+<!-- TShirtModal -->
+<div class="modal fade" id="tshirtModal" tabindex="-1" role="dialog" aria-labelledby="tshirtModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tshirtModalLabel">JRMF Shirt Sample</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= image_tag 'jrmf_shirt.png' %>
+      </div>
+      <div class="modal-footer">
+        <p class="mb-0 text-center">
+          <strong>The sizes of the shirts we use run small. In years past, students who would normally opt for a youth medium preferred and youth large.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
