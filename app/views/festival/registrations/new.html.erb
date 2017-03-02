@@ -13,9 +13,9 @@
           <div class="card-block">
             <h5 class="card-title">Your registration contains <%= pluralize(@registration.errors.count, "error") %>.</h5>
             <ul style="margin-bottom:0;">
-            <% @registration.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
+              <% @registration.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
             </ul>
             <h5 class="card-title mt-3 mb-0">Please see below.</h5>
           </div>
@@ -46,7 +46,10 @@
       <p>
         During the festival, students can join any table and work collaboratively with the volunteers and students there. Students are welcome to try out several tables until they find one that particularly interests them; once they do, they are encouraged to spend 30 – 45 minutes or more at that activity. Almost no activities will be possible to finish completely during the festival. Students will be able to take home activities that they have spent time on. There will also be a mathematical games area.
       </p>
-      <p>We provide the mathematics and mathematicians to work with the students on the activities.</p> <p>
+      <p>
+        We provide the mathematics and mathematicians to work with the students on the activities.
+      </p>
+      <p>
         Please bring an adult to provide supervision of your children/students. Admission for kids is $10; supervising adults are free. If you can't afford the fee, there is a checkbox at the bottom of the form to waive it.
       </p>
       <p>Proceeds from this event go to support the <a href="https://columbusmathcircle.wordpress.com/">Columbus Math Teacher's Circle</a>.</p>
@@ -96,29 +99,15 @@
     </div>
     <div class="reg_table mb-5">
       <h3>Students</h3>
-      <table class="reg_form display" id="students" style="width:100%;border-spacing:5px;">
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Grade Level</th>
-          <th></th>
-        </tr>
-        <%= f.fields_for :students, wrapper: false do |student_form| %>
-          <tr class="add_student fields">
-            <td class="student_first_name"><%= student_form.hidden_field :id %><%= student_form.input :first_name, label: false, input_html: {style: "width:99%;"} %></td>
-            <td class="student_last_name"><%= student_form.input :last_name, label: false, input_html: {style: "width:99%;"} %></td>
-            <td class="student_grade"><%= student_form.input :grade, collection: Student::GRADES, label: false %></td>
-            <td class="student_remove" valign="middle">
-              <%= student_form.link_to_remove do %>
-                <i class="fa fa-times fa-2x close" style="margin-bottom:17px;color:#d93039;" data-toggle="tooltip" data-placement="top" title="Remove Student"></i>
-              <% end %>
-            </td>
-          </tr>
+      <div class="reg_form display" id="students" style="width:100%;">
+        <%= f.fields_for :students, wrapper: false %>
+
+        <%= f.link_to_add :students, data: { data: "#students" },
+                                     class: "btn btn-xs btn-warning mt-4",
+                                     id: "add_student" do %>
+          <%= icon('plus') %> Add Student
         <% end %>
-      </table>
-      <p><%= f.link_to_add :students, :data => { :target => "#students" }, class: "btn btn-xs btn-warning", id: "add_student" do %>
-        <%= icon('plus') %> Add Student
-      <% end %></p>
+      </div>
     </div>
 
     <div class="row">
@@ -140,7 +129,7 @@
               Also, feel free to include any comments: <br>
               <div class="row">
                 <div class="col-md-12">
-                <%= f.input :comments, label: false, input_html: { rows: 4 }, wrapper_html: { style: "margin:0;"} %>
+                  <%= f.input :comments, label: false, input_html: { rows: 4 }, wrapper_html: { style: "margin:0;"} %>
                 </div>
               </div>
             </p>

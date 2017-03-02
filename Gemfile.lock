@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
+  specs:
+    nested_form (0.3.2)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -111,7 +117,6 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     multipart-post (2.0.0)
-    nested_form (0.3.2)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -215,7 +220,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   meta_request
-  nested_form
+  nested_form!
   pg
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)

@@ -4,7 +4,7 @@
 jQuery ->
   if !(document.getElementById("submit_registration") is null)
     #calculate total on page load (incase of redirect)
-    student_count.update()
+    registration.update_total()
     registration_payment.amountUpdate()
 
   # Validate email address
@@ -22,38 +22,61 @@ jQuery ->
   $('.datatable').DataTable
     pagingType: 'simple'
 
-
   # Update student count and total when text is enetered in fields
   $("#students").on "keydown", ->
-    student_count.update()
+    registration.update_total()
 
   #Update student count and total when field is removed
-  $("#students").on "click", "a", ->
-    setTimeout (-> student_count.update()), 1000
+  $("#students").on "click", ->
+    setTimeout (-> registration.update_total()), 1000
 
+  # Count shirts selected if page is reloaded
+  student.shirt_selected($('.fields'))
+
+  #Set listener for created field
+  $(document).on 'nested:fieldAdded', (event) ->
+    student.shirt_selected(event.field)
 
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   registration_payment.setupForm()
 
-student_count =
-  update: ->
-    count = student_count.value()
+student =
+  shirt_selected: (student_fields) ->
+    student_fields.find('input.boolean').on 'change', ->
+      select = $(this).closest('td').next().find('select')
+      if $(this).is(':checked')
+        select.prop('disabled', false)
+      else
+        select.val(select.find('option:first').val()).prop('disabled', true)
 
-    $("#registration_student_count").val(count)
-    $('#total > p').children('span').text("$#{count * 10}.00")
-    registration_payment.amountUpdate()
+  shirt_count: ->
+    count = 0
+    $("[id$='_shirt']:checkbox:checked", '#students').each ->
+      count += 1
+    count
 
-  value: ->
+  count: ->
     count = 0
     $("#students").find("[id$='_first_name']").each ->
       if ($(this).val() or $(this).closest("[id$='_last_name']").val()) and $(this).closest('tr').is(":visible")
         count += 1
     count
 
+registration =
+  update_total: ->
+    student_count = student.count()
+    shirt_count = student.shirt_count()
+
+    console.log "Shirt count: #{shirt_count}; Student count: #{student_count}"
+
+    $("#registration_student_count").val(student_count)
+    $('#total > p').children('span').text("$#{(student_count * 10) + (shirt_count * 15)}.00")
+    registration_payment.amountUpdate()
+
 registration_payment =
   setupForm: ->
     $('#new_registration').submit ->
-      student_count.update()
+      registration.update_total()
       if student_count.value() == 0
         $('#stripe_error').text('Please add students to this registration.')
         false
