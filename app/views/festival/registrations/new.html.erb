@@ -1,4 +1,3 @@
-
 <div class="row festival-header">
   <div class="col-sm-12 align-middle festival-header-cover pb-5">
     <h1 class="text-white">Julia Robinson Mathematics Festival - Columbus</h1>
@@ -173,24 +172,5 @@
     </div>
   </div>
 </div><!-- /.container -->
-<!-- TShirtModal -->
-<div class="modal fade" id="tshirtModal" tabindex="-1" role="dialog" aria-labelledby="tshirtModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tshirtModalLabel">JRMF Shirt Sample</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= image_tag 'jrmf_shirt.png' %>
-      </div>
-      <div class="modal-footer">
-        <p class="mb-0 text-center">
-          <strong>The sizes of the shirts we use run small. In years past, students who would normally opt for a youth medium preferred and youth large.</strong>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+
+<%= render 'tshirt_modal' %>
