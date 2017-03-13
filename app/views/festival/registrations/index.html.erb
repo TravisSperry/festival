@@ -13,6 +13,7 @@
         <th>Student count</th>
         <th>Email</th>
         <th>Total</th>
+        <th>Fee Waiver?</th>
         <th></th>
         <th></th>
       </tr>
@@ -27,6 +28,7 @@
           <td><%= registration.student_count %></td>
           <td><%= registration.email %></td>
           <td><%= "$#{'%.2f' % (registration.total/100)}" %></td>
+          <td><%= registration.fee_waiver %></td>
           <td><%= link_to 'Show', festival_registration_path(registration) %></td>
           <td><%= link_to 'Edit', edit_festival_registration_path(registration) %></td>
         </tr>
