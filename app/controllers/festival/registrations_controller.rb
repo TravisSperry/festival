@@ -5,7 +5,7 @@ class Festival::RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.json
   def index
-    @registrations = Registration.all
+    @registrations = Registration.where("created_at >= ?", Date.today.beginning_of_year)
   end
 
   # GET /registrations/1
@@ -89,6 +89,6 @@ class Festival::RegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_params
-      params.require(:registration).permit(:year, :student_count, :fee_waiver, :consent, :stripe_card_token, :stripe_charge_token, :email, :confirmation_code, :total, :first_name, :last_name, :email, :comments, :phone, :school_name, students_attributes: [:id, :first_name, :last_name, :grade, :shirt, :shirt_size, :_destroy])
+      params.require(:registration).permit(:year, :student_count, :fee_waiver, :consent, :stripe_card_token, :stripe_charge_token, :email, :confirmation_code, :total, :first_name, :last_name, :email, :comments, :phone, :school_name, :source, :source_other, students_attributes: [:id, :first_name, :last_name, :grade, :shirt, :shirt_size, :_destroy])
     end
 end

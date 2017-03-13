@@ -1,7 +1,9 @@
 <%= title "Registrations" %>
 <div class="container">
   <h1 class="mb-5">Registrations</h1>
-
+  <p>
+    Total number of students for <%= Date.today.year %>: <%= @registrations.sum(:student_count) %>
+  </p>
   <table class=" table datatable display" width="100%">
     <thead>
       <tr>

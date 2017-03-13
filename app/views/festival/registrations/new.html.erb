@@ -146,10 +146,10 @@
         <%= f.input :year, as: :hidden, input_html: { value: Registration::YEAR } %>
       </div>
       <div class="col-lg-4">
-          <%= render 'festival/registrations/credit_card_info' %>
-        </br>
-        </br>
-            <%= f.submit "Submit Registration", class: "btn-lg btn-success float-sm-right", id: "submit_registration" %>
+        <%= render 'festival/registrations/credit_card_info' %>
+        <%= f.input :source, as: :select, collection: Registration::SOURCES, label: "How did you hear about JRMF?" %>
+        <%= f.input :source_other, label: "Other source" %>
+        <%= f.submit "Submit Registration", class: "btn-lg btn-success float-sm-right mt-4", id: "submit_registration" %>
       </div>
     </div>
   <% end %>
