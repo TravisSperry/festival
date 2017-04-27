@@ -9,7 +9,7 @@ class Festival::RegistrationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @registrations }
+      format.json { render json: @registrations, include: { students: { only: [:first_name, :last_name, :shirt_size]}} }
     end
   end
 
