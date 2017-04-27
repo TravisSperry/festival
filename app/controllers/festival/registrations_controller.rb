@@ -5,7 +5,7 @@ class Festival::RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.json
   def index
-    @registrations = Registration.where("created_at >= ?", Date.today.beginning_of_year)
+    @registrations = Registration.order(:last_name).where("created_at >= ?", Date.today.beginning_of_year)
 
     respond_to do |format|
       format.html
