@@ -6,6 +6,11 @@ class Festival::RegistrationsController < ApplicationController
   # GET /registrations.json
   def index
     @registrations = Registration.where("created_at >= ?", Date.today.beginning_of_year)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @registrations }
+    end
   end
 
   # GET /registrations/1
