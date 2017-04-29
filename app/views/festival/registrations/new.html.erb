@@ -74,84 +74,92 @@
       <h3>Register to Attend</h3>
     </div>
   </div>
+  <% if Registration::STATUS == "open" %>
+    <%= simple_nested_form_for [:festival, @registration], wrapper: false do |f| %>
 
-  <%= simple_nested_form_for [:festival, @registration], wrapper: false do |f| %>
-
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.input :first_name, label: "Parent First Name" %>
-      </div>
-      <div class="col-md-4">
-        <%= f.input :last_name, label: "Parent Last Name" %>
-      </div>
-      <div class="col-md-4">
-        <%= f.input :phone, label: "Phone" %>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-md-4">
-        <%= f.input :email, label: "Email for confirmation to be sent to...", input_html: { "required pattern": "^\S+@(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$"} %>
-      </div>
-      <div class="col-md-6">
-        <%= f.input :school_name, label: "School Name or Home School" %>
-      </div>
-    </div>
-    <div class="reg_table mb-5">
-      <h3>Students</h3>
-      <%# link_to "T-Shirt Sample", "#", class: 'btn btn-secondary mb-3', data: { toggle: "modal", target: "#tshirtModal"} %>
-      <div class="reg_form display" id="students" style="width:100%;">
-        <%= f.fields_for :students, wrapper: false %>
-
-        <%= f.link_to_add :students, data: { data: "#students" },
-                                     class: "btn btn-xs btn-warning mt-4",
-                                     id: "add_student" do %>
-          <%= icon('plus') %> Add Student
-        <% end %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="card card-secondary">
-          <div class="card-block">
-            <h4 class="card-title">Payment</h4>
-            <p class="card-text">The registration fee for this event is $10 PER STUDENT.</p>
-            <p class="card-text">If you are financially unable to pay the registration fee, you may request to have your registration fee waived. Your registration will still be accepted and the students can still attend the event.</p>
-            <%= f.input :fee_waiver, label: false, inline_label: "Check this box to request a registration fee waiver.", wrapper_html: {style: "margin:0;"} %>
-          </div>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.input :first_name, label: "Parent First Name" %>
         </div>
+        <div class="col-md-4">
+          <%= f.input :last_name, label: "Parent Last Name" %>
+        </div>
+        <div class="col-md-4">
+          <%= f.input :phone, label: "Phone" %>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <%= f.input :email, label: "Email for confirmation to be sent to...", input_html: { "required pattern": "^\S+@(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$"} %>
+        </div>
+        <div class="col-md-6">
+          <%= f.input :school_name, label: "School Name or Home School" %>
+        </div>
+      </div>
+      <div class="reg_table mb-5">
+        <h3>Students</h3>
+        <%# link_to "T-Shirt Sample", "#", class: 'btn btn-secondary mb-3', data: { toggle: "modal", target: "#tshirtModal"} %>
+        <div class="reg_form display" id="students" style="width:100%;">
+          <%= f.fields_for :students, wrapper: false %>
 
-        <div class="card mt-4">
-          <div class="card-block">
-            <p class="card-text">
-              Please alert us to any mobility issues, or
-              other special needs we should be aware of.
-              Also, feel free to include any comments: <br>
-              <div class="row">
-                <div class="col-md-12">
-                  <%= f.input :comments, label: false, input_html: { rows: 4 }, wrapper_html: { style: "margin:0;"} %>
+          <%= f.link_to_add :students, data: { data: "#students" },
+                                       class: "btn btn-xs btn-warning mt-4",
+                                       id: "add_student" do %>
+            <%= icon('plus') %> Add Student
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card card-secondary">
+            <div class="card-block">
+              <h4 class="card-title">Payment</h4>
+              <p class="card-text">The registration fee for this event is $10 PER STUDENT.</p>
+              <p class="card-text">If you are financially unable to pay the registration fee, you may request to have your registration fee waived. Your registration will still be accepted and the students can still attend the event.</p>
+              <%= f.input :fee_waiver, label: false, inline_label: "Check this box to request a registration fee waiver.", wrapper_html: {style: "margin:0;"} %>
+            </div>
+          </div>
+
+          <div class="card mt-4">
+            <div class="card-block">
+              <p class="card-text">
+                Please alert us to any mobility issues, or
+                other special needs we should be aware of.
+                Also, feel free to include any comments: <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= f.input :comments, label: false, input_html: { rows: 4 }, wrapper_html: { style: "margin:0;"} %>
+                  </div>
                 </div>
-              </div>
-            </p>
+              </p>
+            </div>
           </div>
+
+          <p>
+            <%= f.input :consent, label: false, inline_label: "Children under 18 require consent from parent or guardian to fill out this form. Check this box if you have their consent.", input_html: {style: "margin:0;"} %>
+          </p>
+
+          <%= f.input :student_count, as: :hidden %>
+          <%= f.input :stripe_card_token, as: :hidden %>
+          <%= f.input :total, as: :hidden %>
+          <%= f.input :year, as: :hidden, input_html: { value: Registration::YEAR } %>
         </div>
-
-        <p>
-          <%= f.input :consent, label: false, inline_label: "Children under 18 require consent from parent or guardian to fill out this form. Check this box if you have their consent.", input_html: {style: "margin:0;"} %>
-        </p>
-
-        <%= f.input :student_count, as: :hidden %>
-        <%= f.input :stripe_card_token, as: :hidden %>
-        <%= f.input :total, as: :hidden %>
-        <%= f.input :year, as: :hidden, input_html: { value: Registration::YEAR } %>
+        <div class="col-lg-4">
+          <%= render 'festival/registrations/credit_card_info' %>
+          <%= f.input :source, as: :select, collection: Registration::SOURCES, label: "How did you hear about JRMF?" %>
+          <%= f.input :source_other, label: "Other source" %>
+          <%= f.submit "Submit Registration", class: "btn-lg btn-success float-sm-right mt-4", id: "submit_registration" %>
+        </div>
       </div>
-      <div class="col-lg-4">
-        <%= render 'festival/registrations/credit_card_info' %>
-        <%= f.input :source, as: :select, collection: Registration::SOURCES, label: "How did you hear about JRMF?" %>
-        <%= f.input :source_other, label: "Other source" %>
-        <%= f.submit "Submit Registration", class: "btn-lg btn-success float-sm-right mt-4", id: "submit_registration" %>
-      </div>
+    <% end %> <!-- end registration form -->
+  <% else %>
+    <div class="alert alert-danger text-center mt-4">
+      <h3 class="mb-0">Registration has closed.</h3>
     </div>
+    <p>
+      Interested in attending next year? Email us at <a href="mailto:info@mathplusacademy.com">info@mathplusacademy.com</a> and we will make sure to notify you next year!
+    </p>
   <% end %>
 </div><!-- /.container -->
 <hr class="mt-5 mt-sm-5 mb-4">

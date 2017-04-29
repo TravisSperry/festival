@@ -9,6 +9,8 @@ class Registration < ApplicationRecord
 
   SOURCES = ["Teacher", "Flyer", "Email", "Math Plus Academy", "Facebook", "Twitter", "Other (Please specify below)"]
 
+  STATUS = "closed"
+
   def save_with_payment
     if valid?
       charge_total = total
